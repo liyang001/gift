@@ -1,0 +1,55 @@
+<ion-view title="礼物说">
+	<ion-nav-buttons side="left">
+		<button class="button button-clear icon ion-ios-list-outline"></button>
+	</ion-nav-buttons>
+	<ion-nav-buttons side="right">
+		<button class="button button-clear icon ion-ios-search-strong"></button>
+	</ion-nav-buttons>
+	<ion-nav-title>
+		<h2 class="main-title">礼物说</h2>
+	</ion-nav-title>
+	<ion-content class="main">
+		<!-- 下拉刷新-->
+		<ion-refresher pulling-text="卖力加载中..." spinner="dots" on-refresh="onRefresh()">			
+		</ion-refresher>
+		<div>
+			<ion-scroll direction="x" scrollbar-x="false" class="main_nav_scroll">
+				<span class="main_nav_list_active">精选</span>	
+				<span class="main_nav_list">海淘</span>	
+				<span class="main_nav_list">精选</span>	
+				<span class="main_nav_list">精选</span>	
+				<span class="main_nav_list">精选</span>	
+				<span class="main_nav_list">精选</span>	
+				<span class="main_nav_list">精选</span>	
+				<span class="main_nav_list">精选</span>	
+				<span class="main_nav_list">精选</span>	
+			</ion-scroll>
+			<!--轮播 -->
+			<ion-slide-box does-continue="true" auto-play="true">
+				<ion-slide ng-repeat="bannerItem in bannerData" class="main_slide">
+					<img ng-src="{{bannerItem.image_url}}">
+				</ion-slide>
+			</ion-slide-box>
+			
+			<!-- 滑动-->
+			<ion-scroll class="main_scroll" direction="x" scrollbar-x="false">
+				<img ng-repeat="dataSecond in dataSecond" ng-src="{{dataSecond.image_url }}" class="main_img">
+			</ion-scroll>
+			
+			<!-- 列表-->
+			<ionm-list class="main_list ">
+				<ion-item ng-repeat="dataList in dataList" class="main_item item-borderless item">
+					<img ng-src="{{dataList.image_url}}">
+					<div class="item-title">
+						<p>{{dataList.title}}</p>
+						<p><i class="icon ion-android-favorite-outline assertive"></i>&nbsp;{{dataList.count}}</p>
+					</div>
+				</ion-item>
+			</ion-list>
+		</div>
+		<!--  上拉加载-->
+		<ion-infinite-scroll  spinner="dots" immediate-check="false"  on-infinite="loadMore()">
+			
+		</ion-infinite-scroll>
+	</ion-content>
+</ion-view>
